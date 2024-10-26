@@ -1,3 +1,12 @@
+const Button = () => {
+  return <button>Meu button</button>;
+};
+
 export const Dashboard = () => {
-  return <p>Dashboard</p>;
+  return (
+    <div>
+      <p>Dashboard</p>;
+      <Button />
+    </div>
+  );
 };
