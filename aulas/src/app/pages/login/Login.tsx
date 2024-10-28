@@ -1,6 +1,8 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 
 export const Login = () => {
+  const inputPasswordRef = useRef<HTMLInputElement>(null);
+
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
@@ -12,6 +14,10 @@ export const Login = () => {
   const handleEntrar = useCallback(() => {
     console.log(email);
     console.log(password);
+
+    if (inputPasswordRef.current !== null) {
+      inputPasswordRef.current.focus();
+    }
   }, [email, password]);
 
   return (
@@ -20,12 +26,19 @@ export const Login = () => {
         <p>Quantidade de caracteres no email: {emailLength}</p>
         <label>
           <span>Email</span>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={(e) =>
+              e.key === "Enter" ? inputPasswordRef.current?.focus() : undefined
+            }
+          />
         </label>
 
         <label>
           <span>Senha</span>
           <input
+            ref={inputPasswordRef}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
