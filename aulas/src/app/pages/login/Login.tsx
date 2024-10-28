@@ -14,10 +14,6 @@ export const Login = () => {
   const handleEntrar = useCallback(() => {
     console.log(email);
     console.log(password);
-
-    if (inputPasswordRef.current !== null) {
-      inputPasswordRef.current.focus();
-    }
   }, [email, password]);
 
   return (
